@@ -5,6 +5,7 @@ contents = CSV.open "MM_Jira_Story_with_subtask_id_7.9.csv", headers: true, head
     array_keys = []
     array_values = []
 
+
     contents.each do |row|
     key = row[:key]
     subtask = row[:subtask]
@@ -14,18 +15,15 @@ contents = CSV.open "MM_Jira_Story_with_subtask_id_7.9.csv", headers: true, head
     if subtask != nil
     subtask = subtask.split(", ")
     subtask.each do |task|
-        each_row[task] = key
-        array_keys << each_row.keys
-        array_values << each_row.values
-
+        array_keys << key
+        array_values << task
     end
     end
     
     filename = "output_mm_jira.csv"
     
     File.open(filename,'w') do |file|
-        
-        file.puts array_keys
+        file.puts array_values
     end
     
 end
